@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,13 @@ namespace DataStructuresHomework
 {
     class Program
     {
+        public static string FirstCharToUpper(string input)
+        {
+            if (String.IsNullOrEmpty(input))
+                throw new ArgumentException("ARGH!");
+            return input.First().ToString().ToUpper() + input.Substring(1);
+        }
+
         static void Main(string[] args)
         {
             string sMenuInput;
@@ -17,10 +25,13 @@ namespace DataStructuresHomework
 
             Dictionary<string, int> diDictionary = new Dictionary<string, int>();
 
+            Stack<String> sStack1 = new Stack<String>();
+
             bool bGo = true;
             bool bOne = true;
             bool bTwo = true;
             bool bThree = true;
+            bool bFound = false;
 
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
@@ -54,41 +65,151 @@ namespace DataStructuresHomework
                             sMenuInput = Console.ReadLine();
 
                             iMenuInput = Convert.ToInt32(sMenuInput);
+                            Console.WriteLine();
 
                             switch (iMenuInput)
                             {
                                 case 1:
+                                    Console.WriteLine("Insert a new string: ");
+                                    sEntry = Console.ReadLine();
 
+                                    //Add String to Stack
+                                    sStack1.Push(sEntry);
+
+                                    Console.WriteLine(sEntry + " was added to the Stack.");
+
+                                    Console.WriteLine();
                                     break;
 
                                 case 2:
 
+                                    //Add 2000 Entries
+                                    for (int i = 1; i < 2001; i++)
+                                    {
+                                        sEntry = "New Entry " + i;
+
+                                        sStack1.Push(sEntry);
+                                    }
+
+                                    Console.WriteLine("A Huge List has been added to the Stack");
+                                    Console.WriteLine();
                                     break;
 
                                 case 3:
+
+                                    //Display Stack
+                                    Console.WriteLine("Current stack: ");
+                                    foreach (String value in sStack1)
+                                    {
+                                        Console.Write(value + " ");
+                                    }
+
+                                    Console.WriteLine("\n");
 
                                     break;
 
                                 case 4:
 
+                                    //HOW SHOULD DELETING A STACK WORK? :S
+
+
+                                    Console.WriteLine("Stacks can only delete the top item, are you sure " +
+                                        "you are to delete? (Y/N)");
+ 
+                                    sEntry = Console.ReadLine();
+
+                                    sEntry = FirstCharToUpper(sEntry);
+
+                                    if(sEntry.Substring(0) == "Y")
+                                    {
+                                        sStack1.Pop();
+                                        Console.WriteLine("Top item was removed");
+                                    }
+
+                                    else if (sEntry.Substring(0) == "N")
+                                    {
+                                        Console.WriteLine("Top item was not removed");
+                                    }
+
+                                    else
+                                    {
+                                        Console.WriteLine("Response was invalid. Top item was not removed");
+                                    }
+
+
+
+                                    /*for (int i = 0; i < sStack1.Count; i++)
+                                    {
+                                        if (sStack1[i] == sEntry)
+                                        {
+                                            sStack1[i].pop;
+                                            bFound = true;
+                                        }
+
+                                    }
+
+                                    if (bFound == true)
+                                    {
+                                        Console.WriteLine(sEntry + " has been removed");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(sEntry + " was not found");
+                                    }
+
+                                    //reinitalize boolean
+                                    bFound = false;
+                                     */
+
+                                    Console.WriteLine();
+                                    
                                     break;
 
                                 case 5:
+
+                                    sStack1.Clear();
+                                    Console.WriteLine("The Stack has been cleared\n");
 
                                     break;
 
                                 case 6:
 
+                                    Console.WriteLine("Which entry do you want to find?");
+                                    sEntry = Console.ReadLine();
+
+                                    //Reset the Stopwatch just incase it was previously used
+                                    sw.Reset();
+
+                                    //Start stopwatch
+                                    sw.Start();
+
+                                    bFound = sStack1.Contains(sEntry);
+
+                                    if (bFound == true)
+                                    {
+                                        sw.Stop();
+                                        Console.WriteLine(sEntry + " was found after " + sw.ElapsedMilliseconds * 1000 + " seconds.");
+                                    }
+                                    else
+                                    {
+                                        sw.Stop();
+                                        Console.WriteLine("It took " + sw.ElapsedMilliseconds * 1000 + " seconds to search the Stack.\n"
+                                            + sEntry + " was not found.");
+                                    }
+
+                                    Console.WriteLine();
                                     break;
 
                                 case 7:
 
                                     bOne = false;
+                                    
+                                    //It takes too long to break to the main menu, is that okay?
 
                                     break;
                             }
                         } while (bOne == true);
-                            
+
                         break;
 
                     case 2:
@@ -142,7 +263,7 @@ namespace DataStructuresHomework
                                     break;
                             }
                         } while (bTwo == true);
-                        
+
                         break;
 
                     case 3:
@@ -225,16 +346,16 @@ namespace DataStructuresHomework
 
                                     sw.Start();
 
-                                    if(diDictionary.ContainsKey(sEntry))
+                                    if (diDictionary.ContainsKey(sEntry))
                                     {
                                         sw.Stop();
-                                        Console.WriteLine(sEntry + " was found after " + sw.ElapsedMilliseconds*1000 + " seconds." );
+                                        Console.WriteLine(sEntry + " was found after " + sw.ElapsedMilliseconds * 1000 + " seconds.");
                                     }
 
                                     else
                                     {
                                         sw.Stop();
-                                        Console.WriteLine("It took " + sw.ElapsedMilliseconds * 1000 + " seconds to search the dictioanry.\n"
+                                        Console.WriteLine("It took " + sw.ElapsedMilliseconds * 1000 + " seconds to search the dictionary.\n"
                                             + sEntry + " was not found.");
                                     }
 
@@ -264,8 +385,8 @@ namespace DataStructuresHomework
             } while (bGo == true);
 
 
-            
-            
+
+
         }
     }
 }
