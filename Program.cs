@@ -26,6 +26,8 @@ namespace DataStructuresHomework
             Dictionary<string, int> diDictionary = new Dictionary<string, int>();
 
             Stack<String> sStack1 = new Stack<String>();
+            
+            Queue<string> sQueue = new Queue<string>();
 
             bool bGo = true;
             bool bOne = true;
@@ -217,8 +219,8 @@ namespace DataStructuresHomework
                         do
                         {
                             //Karli
-                            Console.WriteLine("Select a menu item (1, 2, 3, 4, etc)\n" +
-                                                "1. Add one time to Queue\n" +
+                            Console.WriteLine("\n\nSelect a menu item (1, 2, 3, 4, etc)\n" +
+                                                "1. Add One Item to Queue\n" +
                                                 "2.Add Huge List of Items to Queue\n" +
                                                 "3.Display Queue\n" +
                                                 "4.Delete from Queue\n" +
@@ -233,36 +235,132 @@ namespace DataStructuresHomework
                             switch (iMenuInput)
                             {
                                 case 1:
+                                    Console.WriteLine("\nInsert a new string: ");
+                                    sEntry = Console.ReadLine();
 
+                                    //Add String to Queue
+                                    sQueue.Enqueue(sEntry);
+
+                                    Console.WriteLine("\n" + sEntry + " was added to the Queue.");
+
+                                    Console.WriteLine();
                                     break;
 
                                 case 2:
+                                    //Clear Queue
+                                    sQueue.Clear();
 
+                                    //Add 2000 Entries
+                                    for (int i = 1; i < 2001; i++)
+                                    {
+                                        sEntry = "New Entry " + i;
+
+                                        sQueue.Enqueue(sEntry);
+                                    }
+
+                                    Console.WriteLine("A Huge List has been added to the Queue");
+                                    Console.WriteLine();
                                     break;
 
                                 case 3:
+
+                                    //Display Queue
+                                    Console.WriteLine("Current queue: ");
+                                    foreach (String value in sQueue)
+                                    {
+                                        Console.Write(value + " ");
+                                    }
+
+                                    Console.WriteLine("\n");
 
                                     break;
 
                                 case 4:
 
+                                    //Delete from queue
+
+                                    Console.WriteLine("Which item would you like to delete? ");
+
+                                    sEntry = Console.ReadLine();
+                                    bFound = sQueue.Contains(sEntry);
+
+
+                                    if (bFound == true)
+                                    {
+                                        string sQueueHold;
+
+                                        for (int iCount = 0; iCount < sQueue.Count; iCount++)
+                                        {
+                                            if(sEntry == sQueue.Peek())
+                                            {
+                                                //remove item in queue
+                                                sQueue.Dequeue();
+                                                Console.WriteLine("\n\n" + sEntry + " was removed");
+                                            }
+                                            else
+                                            {
+                                                //pass first item in list to back of queue so can check the next item in the list
+                                                sQueueHold = sQueue.Dequeue();
+                                                sQueue.Enqueue(sQueueHold);
+                                            }
+                                        }                                
+                                    }
+
+                                    else
+                                    {
+                                        //exception handling - need to include menu again
+                                        Console.WriteLine("\n\nThat is not an item in the queue. Please enter an item in the queue: ");
+                                    }
+
+                                    Console.WriteLine();
+
                                     break;
 
                                 case 5:
+
+                                    //clear queue
+                                    sQueue.Clear();
+                                    Console.WriteLine("\n\nThe Queue has been cleared\n");
 
                                     break;
 
                                 case 6:
 
+                                    Console.WriteLine("Which entry do you want to find?");
+                                    sEntry = Console.ReadLine();
+
+                                    //Reset the Stopwatch just incase it was previously used
+                                    sw.Reset();
+
+                                    //Start stopwatch
+                                    sw.Start();
+
+                                    bFound = sQueue.Contains(sEntry);
+
+                                    if (bFound == true)
+                                    {
+                                        sw.Stop();
+                                        Console.WriteLine(sEntry + " was found after " + sw.ElapsedMilliseconds * 1000 + " seconds.");
+                                    }
+                                    else
+                                    {
+                                        sw.Stop();
+                                        Console.WriteLine("It took " + sw.ElapsedMilliseconds * 1000 + " seconds to search the Queue.\n"
+                                            + sEntry + " was not found.");
+                                    }
+
+                                    Console.WriteLine();
                                     break;
 
                                 case 7:
 
-                                    bTwo = false;
+                                    bOne = false;
+
+                                    //It takes too long to break to the main menu, is that okay?
 
                                     break;
                             }
-                        } while (bTwo == true);
+                        } while (bOne == true);
 
                         break;
 
