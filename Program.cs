@@ -84,6 +84,8 @@ namespace DataStructuresHomework
                                     break;
 
                                 case 2:
+                                    //Clear Stack of Current Contents
+                                    sStack1.Clear();
 
                                     //Add 2000 Entries
                                     for (int i = 1; i < 2001; i++)
@@ -137,31 +139,6 @@ namespace DataStructuresHomework
                                     {
                                         Console.WriteLine("Response was invalid. Top item was not removed");
                                     }
-
-
-
-                                    /*for (int i = 0; i < sStack1.Count; i++)
-                                    {
-                                        if (sStack1[i] == sEntry)
-                                        {
-                                            sStack1[i].pop;
-                                            bFound = true;
-                                        }
-
-                                    }
-
-                                    if (bFound == true)
-                                    {
-                                        Console.WriteLine(sEntry + " has been removed");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine(sEntry + " was not found");
-                                    }
-
-                                    //reinitalize boolean
-                                    bFound = false;
-                                     */
 
                                     Console.WriteLine();
                                     
@@ -396,6 +373,9 @@ namespace DataStructuresHomework
                                     break;
 
                                 case 2:
+
+                                    //Clear Dictionary
+                                    diDictionary.Clear();
 
                                     for (int i = 1; i < 2001; i++)
                                     {
