@@ -1,0 +1,438 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataStructuresHomework
+{
+
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+
+            //creates stopwatch object to track searching time
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
+            int iMenuInput = 0;
+            string sMenuInput;
+
+            do
+            {
+                bool repeat = true;
+                do
+                {
+                    Console.WriteLine("Select a menu item (Enter 1, 2, 3, or 4)\n" +
+                                    "1.Stack\n" +
+                                    "2.Queue\n" +
+                                    "3.Dictionary\n" +
+                                    "4.Exit\n\n");
+                    sMenuInput = Console.ReadLine();
+
+
+                    // ToInt32 can throw FormatException or OverflowException.
+                    try
+                    {
+                        iMenuInput = Convert.ToInt32(sMenuInput);
+                        repeat = false;
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input entered is invalid.\n");
+                    }
+                    
+                } while (repeat);
+               
+                if (iMenuInput == 1)
+                {
+                    //go through stack menu options
+                    int iStMenu = 0;
+                    string sStMenu;
+                    Stack<string> stItems = new Stack<string>();
+                    do
+                    {
+                        
+                        repeat = true;
+                        do
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Select a menu item (Enter any number from 1-7)\n" +
+                                                "1.Add one time to Stack\n" +
+                                                "2.Add Huge List of Items to Stack\n" +
+                                                "3.Display Stack\n" +
+                                                "4.Delete from Stack\n" +
+                                                "5.Clear Stack\n" +
+                                                "6.Search Stack\n" +
+                                                "7.Return to Main Menu\n\n");
+
+                            sStMenu = Console.ReadLine();
+
+                           
+                            // ToInt32 can throw FormatException or OverflowException.
+                            try
+                            {
+                                iStMenu = Convert.ToInt32(sStMenu);
+                                repeat = false;
+
+                            }
+                            catch (FormatException e)
+                            {
+                                Console.WriteLine("Input entered is invalid.\n");
+                            }
+                        } while (repeat);
+
+                        
+
+                        if (iStMenu == 1)
+                        {
+                            //prompt user to enter a string and inputs it into stack
+                            Console.WriteLine("Please type a word to add to the stack.");
+                            string stInput = Console.ReadLine();
+                            stItems.Push(stInput);
+                        }
+                        else if (iStMenu == 2)
+                        {
+                            //clear stack, and then generate 2,000 items in the stack
+                            stItems.Clear();
+                            for (int i = 1; i <= 2000; i++)
+                            {
+                                stItems.Push("New Entry" + " " + i);
+                            }
+                            Console.WriteLine("2,000 items added to stack");
+
+                        }
+                        else if (iStMenu == 3)
+                        {
+                            //display content of stack using foreach
+                            foreach (var item in stItems)
+                            {
+                                Console.WriteLine(item + " ");
+                                Console.WriteLine("\n");
+                            }
+
+                        }
+                        else if (iStMenu == 4)
+                        {
+                            //prompt user to select which item from stack to delete
+                            Console.WriteLine("Would you like to delete the top item of the stack?");
+                            stItems.Pop();
+                            Console.WriteLine("Top item has been deleted.");
+
+                        }
+                        else if (iStMenu == 5)
+                        {
+                            //clear the stack
+                            stItems.Clear();
+                            Console.WriteLine("Stack cleared.");
+
+                        }
+                        else if (iStMenu == 6)
+                        {
+                            //search through the stack and let user know if item was foun d
+                            Console.WriteLine("Write the word you would like to search in the stack.");
+                            string stSearch = Console.ReadLine();
+
+                            //resets and starts the stopwatch each time to clear out old data
+                            sw.Reset();
+                            sw.Start();
+
+                            if (stItems.Contains(stSearch))
+                            {
+                                sw.Stop();
+                                Console.WriteLine(stSearch + " was found in the stack. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                            }
+                            else
+                            {
+                                sw.Stop();
+                                Console.WriteLine(stSearch + " wasn't found in the stack. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("");
+                        }
+                    } while (iStMenu != 7);
+
+
+                }
+                else if (iMenuInput == 2)
+                {
+                    //create menu input variable and queue
+                    int iQMenu = 0;
+                    string sQMenu;
+                    Queue<string> qItems = new Queue<string>();
+
+
+                    do
+                    {
+                        do
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Select a menu item (Enter any number from 1-7)\n" +
+                                                "1.Add one time to Queue\n" +
+                                                "2.Add Huge List of Items to Queue\n" +
+                                                "3.Display Queue\n" +
+                                                "4.Delete from Queue\n" +
+                                                "5.Clear Queue\n" +
+                                                "6.Search Queue\n" +
+                                                "7.Return to Main Menu\n\n");
+
+                            sQMenu = Console.ReadLine();
+
+
+                            // ToInt32 can throw FormatException or OverflowException.
+                            try
+                            {
+                                iQMenu = Convert.ToInt32(sQMenu);
+                                repeat = false;
+
+                            }
+                            catch (FormatException e)
+                            {
+                                Console.WriteLine("Input entered is invalid.\n");
+                            }
+                        } while (repeat);
+
+                        
+
+                        Console.WriteLine("");
+
+                        //go through each menu option
+                        if (iQMenu == 1)
+                        {
+                            //prompt user to enter a string and inputs it into queue
+                            Console.WriteLine("Please type a word to add to the queue.");
+                            string stInput = Console.ReadLine();
+                            qItems.Enqueue(stInput);
+                            Console.WriteLine(stInput + " added to queue");
+                        }
+                        else if (iQMenu == 2)
+                        {
+                            //clear queue, and then generate 2,000 items in the dictionary
+                            qItems.Clear();
+
+                            //run for loop 2000 times to load up queue
+                            for (int i = 1; i <= 2000; i++)
+                            {
+                                qItems.Enqueue("New Entry" + " " + i);
+                            }
+                            Console.WriteLine("2,000 items have been added to queue.");
+
+                        }
+                        else if (iQMenu == 3)
+                        {
+                            //display content of queue using foreach
+                            foreach (var i in qItems)
+                            {
+                                Console.WriteLine(i);
+                                Console.WriteLine("\n");
+                            }
+
+                        }
+                        else if (iQMenu == 4)
+                        {
+                            //prompt user if they would like to delete the first item and handle errors by using to upper function
+                            Console.WriteLine("Would you like to the first item in the queue? Y/N");
+                            string sQDelete = Console.ReadLine();
+                            string sUpperCase = sQDelete.ToUpper();
+
+                            if (sUpperCase == "Y")
+                            {
+                                qItems.Dequeue();
+                                Console.WriteLine("The top item has been deleted from the queue");
+                            }
+                            else if (sUpperCase == "N")
+                            {
+                                Console.WriteLine("The Top item has not been removed.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please input either Y or N");
+                            }
+
+                        }
+                        else if (iQMenu == 5)
+                        {
+                            //clear the queue
+                            qItems.Clear();
+                            Console.WriteLine("Queue cleared.");
+
+                        }
+                        else if (iQMenu == 6)
+                        {
+                            //search through the queue and let user know if item was found
+                            Console.WriteLine("\nEnter a string here to check if it's in the queue.");
+
+                            //resets and starts the stopwatch each time to clear out old data
+                            sw.Reset();
+                            sw.Start();
+
+                            //gets user input
+                            string sQSearch = Console.ReadLine();
+
+                            if (qItems.Contains(sQSearch))
+                            {
+                                //shows ellapsed time for search
+                                sw.Stop();
+                                Console.WriteLine(sQSearch + " was found in the queue. It took " + (sw.ElapsedMilliseconds / 1000) + " seconds to search.");
+                            }
+                            else
+                            {
+                                //shows ellapsed time for search
+                                sw.Stop();
+                                Console.WriteLine(sQSearch + " wasn't found in the queue." + (sw.ElapsedMilliseconds / 1000) + " seconds to search.");
+                            }
+                            Console.WriteLine("");
+                        }
+                        else
+                        {
+                            //returns user to beginning menu
+                            Console.WriteLine("");
+                            
+                        }
+                    } while (iQMenu != 7);
+
+                }
+                else if (iMenuInput == 3)
+                {
+                    Dictionary<string, int> dItems = new Dictionary<string, int>();
+                    int iDMenu;
+                    string sDMenu;
+
+                    do
+                    {
+                        repeat = true;
+                        do
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Select a menu item (Enter any number from 1-7)\n" +
+                                                "1.Add one time to Dictionary\n" +
+                                                "2.Add Huge List of Items to Dictionary\n" +
+                                                "3.Display Dictionary\n" +
+                                                "4.Delete from Dictionary\n" +
+                                                "5.Clear Dictionary\n" +
+                                                "6.Search Dictionary\n" +
+                                                "7.Return to Main Menu\n\n");
+
+                            sDMenu = Console.ReadLine();
+
+
+                            // ToInt32 can throw FormatException or OverflowException.
+                            try
+                            {
+                                iDMenu = Convert.ToInt32(sDMenu);
+                                repeat = false;
+
+                            }
+                            catch (FormatException e)
+                            {
+                                Console.WriteLine("Input entered is invalid.\n");
+                            }
+                        } while (repeat);
+
+                        iDMenu = Convert.ToInt32(sDMenu);
+
+
+                        if (iDMenu == 1)
+                        {
+                            //prompt user to enter a string and inputs it into dictionary
+                            Console.WriteLine("Please type a word to add to the dictionary.");
+                            string dInput = Console.ReadLine();
+
+                            //prompt user to enter an int and inputs it into dictionary
+                            Console.WriteLine("Now please type a number to associate with that word.");
+                            int iInput = Convert.ToInt32(Console.ReadLine());
+
+                            //adds the string key and the int value into the dictionary
+                            dItems.Add(dInput, iInput);
+                        }
+                        else if (iDMenu == 2)
+                        {
+                            //clear dictionary, and then generate 2,000 items in the dictionary
+                            dItems.Clear();
+                            for (int i = 1; i <= 2000; i++)
+                            {
+                                string sEntry = "New entry " + i;
+                                dItems.Add(sEntry, i);
+                            }
+                            Console.WriteLine("");
+                            Console.WriteLine("2,000 items added to the dictionary.");
+                        }
+                        else if (iDMenu == 3)
+                        {
+                            //display content of dictionary using foreach
+                            foreach (KeyValuePair<string, int> item in dItems)
+                            {
+                                Console.WriteLine("Key: " + item.Key.ToString() + "\t" + "Value: " + item.Value.ToString());
+                            }
+
+                        }
+                        else if (iDMenu == 4)
+                        {
+                            //prompt user to select which item from dictionary to delete
+                            Console.WriteLine("Write the word you would like to delete in the dictionary");
+                            string sInput = Console.ReadLine();
+
+                            if (dItems.ContainsKey(sInput))
+                            {
+                                Console.WriteLine(sInput + " has been deleted.");
+                            }
+                            else
+                            {
+                                Console.WriteLine(sInput + " wasn't found in the dictionary so it couldn't be.");
+                            }
+
+
+                        }
+                        else if (iDMenu == 5)
+                        {
+                            //clear the dictionary
+                            dItems.Clear();
+                            Console.WriteLine("Dictionary cleared.");
+
+                        }
+                        else if (iDMenu == 6)
+                        {
+                            //search through the dictionary and let user know if item was found
+                            Console.WriteLine("Write the word you would like to search in the dictionary.");
+                            string dSearch = Console.ReadLine();
+
+                            //clears stopwatch data and resets it
+                            sw.Reset();
+                            sw.Start();
+
+                            if (dItems.ContainsKey(dSearch))
+                            {
+                                sw.Stop();
+                                Console.WriteLine(dSearch + " was found in the dictionary. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                            }
+                            else
+                            {
+                                sw.Stop();
+                                Console.WriteLine(dSearch + " was found in the dictionary. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                            }
+                            Console.WriteLine("");
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("");
+                        }
+                    } while (iDMenu != 7);
+
+                }
+                else
+                {
+                    Environment.Exit(0);
+
+                }
+            } while (iMenuInput != 4);
+            }
+        }
+    }
+
+
