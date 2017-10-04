@@ -43,7 +43,14 @@ namespace DataStructuresHomework
                     try
                     {
                         iMenuInput = Convert.ToInt32(sMenuInput);
-                        repeat = false;
+                        if (iMenuInput < 1 || iMenuInput > 4)
+                        {
+                            Console.WriteLine("Please enter in an item on the menu\n");
+                        }
+                        else
+                        {
+                            repeat = false;
+                        }
                     }
                     catch (FormatException e)
                     {
@@ -57,7 +64,7 @@ namespace DataStructuresHomework
                 {
                     int iStMenu = 0;
                     string sStMenu;
-                    
+
                     //Create new stack
                     Stack<string> stItems = new Stack<string>();
 
@@ -86,7 +93,14 @@ namespace DataStructuresHomework
                             try
                             {
                                 iStMenu = Convert.ToInt32(sStMenu);
-                                repeat = false;
+                                if (iStMenu < 1 || iStMenu > 7)
+                                {
+                                    Console.WriteLine("Please enter in an item on the menu\n");
+                                }
+                                else
+                                {
+                                    repeat = false;
+                                }
 
                             }
                             catch (FormatException e)
@@ -160,12 +174,12 @@ namespace DataStructuresHomework
                             if (stItems.Contains(stSearch))
                             {
                                 sw.Stop();
-                                Console.WriteLine(stSearch + " was found in the stack. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                                Console.WriteLine(stSearch + " was found in the stack. \nIt took " + sw.Elapsed.TotalSeconds + " seconds to search.");
                             }
                             else
                             {
                                 sw.Stop();
-                                Console.WriteLine(stSearch + " wasn't found in the stack. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                                Console.WriteLine(stSearch + " wasn't found in the stack. \nIt took " + sw.Elapsed.TotalSeconds + " seconds to search.");
                             }
 
                         }
@@ -184,7 +198,7 @@ namespace DataStructuresHomework
                     //Create menu input variable and queue
                     int iQMenu = 0;
                     string sQMenu;
-                    
+
                     //Create new queue
                     Queue<string> qItems = new Queue<string>();
 
@@ -211,7 +225,14 @@ namespace DataStructuresHomework
                             try
                             {
                                 iQMenu = Convert.ToInt32(sQMenu);
-                                repeat = false;
+                                if (iQMenu < 1 || iQMenu > 7)
+                                {
+                                    Console.WriteLine("Please enter in an item on the menu\n");
+                                }
+                                else
+                                {
+                                    repeat = false;
+                                }
 
                             }
                             catch (FormatException e)
@@ -307,13 +328,13 @@ namespace DataStructuresHomework
                             {
                                 //Shows ellapsed time for search
                                 sw.Stop();
-                                Console.WriteLine(sQSearch + " was found in the queue. It took " + (sw.ElapsedMilliseconds / 1000) + " seconds to search.");
+                                Console.WriteLine(sQSearch + " was found in the queue. \nIt took " + (sw.Elapsed.TotalSeconds) + " seconds to search.");
                             }
                             else
                             {
                                 //shows ellapsed time for search
                                 sw.Stop();
-                                Console.WriteLine(sQSearch + " wasn't found in the queue." + (sw.ElapsedMilliseconds / 1000) + " seconds to search.");
+                                Console.WriteLine(sQSearch + " wasn't found in the queue. \nIt took " + (sw.Elapsed.TotalSeconds) + " seconds to search.");
                             }
                             Console.WriteLine("");
                         }
@@ -338,7 +359,7 @@ namespace DataStructuresHomework
                     do
                     {
                         repeat = true;
-                        
+
                         //Do loop to ensure that the user input is an integer
                         do
                         {
@@ -359,7 +380,14 @@ namespace DataStructuresHomework
                             try
                             {
                                 iDMenu = Convert.ToInt32(sDMenu);
-                                repeat = false;
+                                if (iDMenu < 1 || iDMenu > 7)
+                                {
+                                    Console.WriteLine("Please enter in an item on the menu\n");
+                                }
+                                else
+                                {
+                                    repeat = false;
+                                }
 
                             }
                             catch (FormatException e)
@@ -391,7 +419,7 @@ namespace DataStructuresHomework
                             dItems.Clear();
                             for (int i = 1; i <= 2000; i++)
                             {
-                                string sEntry = "New entry " + i;
+                                string sEntry = "New Entry " + i;
                                 dItems.Add(sEntry, i);
                             }
                             Console.WriteLine("");
@@ -447,12 +475,14 @@ namespace DataStructuresHomework
                             if (dItems.ContainsKey(dSearch))
                             {
                                 sw.Stop();
-                                Console.WriteLine(dSearch + " was found in the dictionary. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                                Console.WriteLine(dSearch + " was found in the dictionary. It took " + sw.Elapsed.TotalSeconds + " seconds to search.");
+                                
                             }
                             else
                             {
                                 sw.Stop();
-                                Console.WriteLine(dSearch + " was not found in the dictionary. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                                Console.WriteLine(dSearch + " was not found in the dictionary. It took " + sw.Elapsed.TotalSeconds + " seconds to search.");
+                                
                             }
                             Console.WriteLine("");
                         }
@@ -469,6 +499,7 @@ namespace DataStructuresHomework
                     Environment.Exit(0);
 
                 }
+                
             } while (iMenuInput != 4);
         }
     }
