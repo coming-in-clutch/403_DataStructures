@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*******************************************************************************************************
+ * Authors: Austin Bird, Brittany Rowe, Julian Sookhoo, Karli Ellis                                    *
+ * Description: This is a program that prompts the user to select an item off of the menu and directs  *
+ * them to add/search/delete/clear items from a stack, queue, or dictionary                            * 
+ *******************************************************************************************************/
 namespace DataStructuresHomework
 {
 
@@ -14,15 +18,17 @@ namespace DataStructuresHomework
         static void Main(string[] args)
         {
 
-            //creates stopwatch object to track searching time
+            //Creates stopwatch object to track searching time
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
             int iMenuInput = 0;
             string sMenuInput;
 
+            //Do loop to stay in the menu until the user presses 4
             do
             {
                 bool repeat = true;
+                //Do loop w/ try catch to ensure that the user entered in a number
                 do
                 {
                     Console.WriteLine("Select a menu item (Enter 1, 2, 3, or 4)\n" +
@@ -43,18 +49,22 @@ namespace DataStructuresHomework
                     {
                         Console.WriteLine("Input entered is invalid.\n");
                     }
-                    
+
                 } while (repeat);
-               
+
+                //Stack menu
                 if (iMenuInput == 1)
                 {
-                    //go through stack menu options
                     int iStMenu = 0;
                     string sStMenu;
+                    
+                    //Create new stack
                     Stack<string> stItems = new Stack<string>();
+
+                    //Do loop to stay in the stack menu until the user presses 7
                     do
                     {
-                        
+
                         repeat = true;
                         do
                         {
@@ -70,8 +80,9 @@ namespace DataStructuresHomework
 
                             sStMenu = Console.ReadLine();
 
-                           
+
                             // ToInt32 can throw FormatException or OverflowException.
+                            //Ensuring the user entered a number
                             try
                             {
                                 iStMenu = Convert.ToInt32(sStMenu);
@@ -84,18 +95,21 @@ namespace DataStructuresHomework
                             }
                         } while (repeat);
 
-                        
 
+                        //Stack menu item one
                         if (iStMenu == 1)
                         {
-                            //prompt user to enter a string and inputs it into stack
+                            //Prompt user to enter a string and inputs it into stack
                             Console.WriteLine("Please type a word to add to the stack.");
                             string stInput = Console.ReadLine();
+
+                            //Putting the user input into the stack
                             stItems.Push(stInput);
                         }
+                        //Stack menu item two
                         else if (iStMenu == 2)
                         {
-                            //clear stack, and then generate 2,000 items in the stack
+                            //Clear stack, and then generate 2,000 items in the stack
                             stItems.Clear();
                             for (int i = 1; i <= 2000; i++)
                             {
@@ -104,9 +118,10 @@ namespace DataStructuresHomework
                             Console.WriteLine("2,000 items added to stack");
 
                         }
+                        //Stack menu item three
                         else if (iStMenu == 3)
                         {
-                            //display content of stack using foreach
+                            //Display content of stack using foreach
                             foreach (var item in stItems)
                             {
                                 Console.WriteLine(item + " ");
@@ -114,24 +129,27 @@ namespace DataStructuresHomework
                             }
 
                         }
+                        //Stack menu item four
                         else if (iStMenu == 4)
                         {
-                            //prompt user to select which item from stack to delete
+                            //Prompt user to select which item from stack to delete
                             Console.WriteLine("Would you like to delete the top item of the stack?");
                             stItems.Pop();
                             Console.WriteLine("Top item has been deleted.");
 
                         }
+                        //Stack menu item five
                         else if (iStMenu == 5)
                         {
-                            //clear the stack
+                            //Clear the stack
                             stItems.Clear();
                             Console.WriteLine("Stack cleared.");
 
                         }
+                        //Stack menu item 6
                         else if (iStMenu == 6)
                         {
-                            //search through the stack and let user know if item was foun d
+                            //Search through the stack and let user know if item was found
                             Console.WriteLine("Write the word you would like to search in the stack.");
                             string stSearch = Console.ReadLine();
 
@@ -159,16 +177,21 @@ namespace DataStructuresHomework
 
 
                 }
+
+                //Queue menu
                 else if (iMenuInput == 2)
                 {
-                    //create menu input variable and queue
+                    //Create menu input variable and queue
                     int iQMenu = 0;
                     string sQMenu;
+                    
+                    //Create new queue
                     Queue<string> qItems = new Queue<string>();
 
-
+                    //Loop to keep the user in the queue menu
                     do
                     {
+                        //Making sure the user entered an integer
                         do
                         {
                             Console.WriteLine("");
@@ -197,25 +220,26 @@ namespace DataStructuresHomework
                             }
                         } while (repeat);
 
-                        
+
 
                         Console.WriteLine("");
 
-                        //go through each menu option
+                        //Queue menu item one
                         if (iQMenu == 1)
                         {
-                            //prompt user to enter a string and inputs it into queue
+                            //Prompt user to enter a string and inputs it into queue
                             Console.WriteLine("Please type a word to add to the queue.");
                             string stInput = Console.ReadLine();
                             qItems.Enqueue(stInput);
                             Console.WriteLine(stInput + " added to queue");
                         }
+                        //Queue menu item two
                         else if (iQMenu == 2)
                         {
-                            //clear queue, and then generate 2,000 items in the dictionary
+                            //Clear queue, and then generate 2,000 items in the dictionary
                             qItems.Clear();
 
-                            //run for loop 2000 times to load up queue
+                            //Run for loop 2000 times to load up queue
                             for (int i = 1; i <= 2000; i++)
                             {
                                 qItems.Enqueue("New Entry" + " " + i);
@@ -223,9 +247,10 @@ namespace DataStructuresHomework
                             Console.WriteLine("2,000 items have been added to queue.");
 
                         }
+                        //Queue menu item three
                         else if (iQMenu == 3)
                         {
-                            //display content of queue using foreach
+                            //Display content of queue using foreach
                             foreach (var i in qItems)
                             {
                                 Console.WriteLine(i);
@@ -233,10 +258,12 @@ namespace DataStructuresHomework
                             }
 
                         }
+                        //Queue menu item four
                         else if (iQMenu == 4)
                         {
-                            //prompt user if they would like to delete the first item and handle errors by using to upper function
-                            Console.WriteLine("Would you like to the first item in the queue? Y/N");
+                            //Prompt user if they would like to delete the first item and handle errors by using to upper function
+                            Console.WriteLine("Would you like to delete the first item in the queue? Y/N");
+
                             string sQDelete = Console.ReadLine();
                             string sUpperCase = sQDelete.ToUpper();
 
@@ -255,6 +282,7 @@ namespace DataStructuresHomework
                             }
 
                         }
+                        //Queue menu item five
                         else if (iQMenu == 5)
                         {
                             //clear the queue
@@ -262,21 +290,22 @@ namespace DataStructuresHomework
                             Console.WriteLine("Queue cleared.");
 
                         }
+                        //Queue menu item six
                         else if (iQMenu == 6)
                         {
-                            //search through the queue and let user know if item was found
+                            //Search through the queue and let user know if item was found
                             Console.WriteLine("\nEnter a string here to check if it's in the queue.");
 
-                            //resets and starts the stopwatch each time to clear out old data
+                            //Resets and starts the stopwatch each time to clear out old data
                             sw.Reset();
                             sw.Start();
 
-                            //gets user input
+                            //Get user input
                             string sQSearch = Console.ReadLine();
 
                             if (qItems.Contains(sQSearch))
                             {
-                                //shows ellapsed time for search
+                                //Shows ellapsed time for search
                                 sw.Stop();
                                 Console.WriteLine(sQSearch + " was found in the queue. It took " + (sw.ElapsedMilliseconds / 1000) + " seconds to search.");
                             }
@@ -290,22 +319,27 @@ namespace DataStructuresHomework
                         }
                         else
                         {
-                            //returns user to beginning menu
+                            //Returns user to beginning menu
                             Console.WriteLine("");
-                            
+
                         }
                     } while (iQMenu != 7);
 
                 }
+                //Dictionary menu
                 else if (iMenuInput == 3)
                 {
+                    //Create new dictionary
                     Dictionary<string, int> dItems = new Dictionary<string, int>();
                     int iDMenu;
                     string sDMenu;
 
+                    //Do loop for the dictionary menu
                     do
                     {
                         repeat = true;
+                        
+                        //Do loop to ensure that the user input is an integer
                         do
                         {
                             Console.WriteLine("");
@@ -336,23 +370,24 @@ namespace DataStructuresHomework
 
                         iDMenu = Convert.ToInt32(sDMenu);
 
-
+                        //Dictionary menu item one
                         if (iDMenu == 1)
                         {
-                            //prompt user to enter a string and inputs it into dictionary
+                            //Prompt user to enter a string and inputs it into dictionary
                             Console.WriteLine("Please type a word to add to the dictionary.");
                             string dInput = Console.ReadLine();
 
-                            //prompt user to enter an int and inputs it into dictionary
+                            //Prompt user to enter an int and inputs it into dictionary
                             Console.WriteLine("Now please type a number to associate with that word.");
                             int iInput = Convert.ToInt32(Console.ReadLine());
 
-                            //adds the string key and the int value into the dictionary
+                            //Adds the string key and the int value into the dictionary
                             dItems.Add(dInput, iInput);
                         }
+                        //Dictionary menu item two
                         else if (iDMenu == 2)
                         {
-                            //clear dictionary, and then generate 2,000 items in the dictionary
+                            //Clear dictionary, and then generate 2,000 items in the dictionary
                             dItems.Clear();
                             for (int i = 1; i <= 2000; i++)
                             {
@@ -362,18 +397,20 @@ namespace DataStructuresHomework
                             Console.WriteLine("");
                             Console.WriteLine("2,000 items added to the dictionary.");
                         }
+                        //Dictionary menu item three
                         else if (iDMenu == 3)
                         {
-                            //display content of dictionary using foreach
+                            //Display content of dictionary using foreach
                             foreach (KeyValuePair<string, int> item in dItems)
                             {
                                 Console.WriteLine("Key: " + item.Key.ToString() + "\t" + "Value: " + item.Value.ToString());
                             }
 
                         }
+                        //Dictionary menu item four
                         else if (iDMenu == 4)
                         {
-                            //prompt user to select which item from dictionary to delete
+                            //Prompt user to select which item from dictionary to delete
                             Console.WriteLine("Write the word you would like to delete in the dictionary");
                             string sInput = Console.ReadLine();
 
@@ -388,20 +425,22 @@ namespace DataStructuresHomework
 
 
                         }
+                        //Dictionary menu item five
                         else if (iDMenu == 5)
                         {
-                            //clear the dictionary
+                            //Clear the dictionary
                             dItems.Clear();
                             Console.WriteLine("Dictionary cleared.");
 
                         }
+                        //Dictionary menu item six
                         else if (iDMenu == 6)
                         {
-                            //search through the dictionary and let user know if item was found
+                            //Search through the dictionary and let user know if item was found
                             Console.WriteLine("Write the word you would like to search in the dictionary.");
                             string dSearch = Console.ReadLine();
 
-                            //clears stopwatch data and resets it
+                            //Clears stopwatch data and resets it
                             sw.Reset();
                             sw.Start();
 
@@ -413,7 +452,7 @@ namespace DataStructuresHomework
                             else
                             {
                                 sw.Stop();
-                                Console.WriteLine(dSearch + " was found in the dictionary. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
+                                Console.WriteLine(dSearch + " was not found in the dictionary. It took " + sw.ElapsedMilliseconds / 1000 + " seconds to search.");
                             }
                             Console.WriteLine("");
                         }
@@ -431,8 +470,6 @@ namespace DataStructuresHomework
 
                 }
             } while (iMenuInput != 4);
-            }
         }
     }
-
-
+}
