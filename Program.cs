@@ -11,6 +11,8 @@ namespace DataStructuresHomework
     
 {
         //WHAT'S UP HOMIES.
+
+            //trial #2
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
