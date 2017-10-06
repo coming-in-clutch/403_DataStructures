@@ -13,6 +13,8 @@ namespace DataStructuresHomework
         //WHAT'S UP HOMIES.
 
             //trial #2
+
+        //MILKTOBERFEST 2017
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
