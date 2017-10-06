@@ -17,6 +17,8 @@ namespace DataStructuresHomework
         //MILKTOBERFEST 2017
 
             //Vegas2017
+
+            //:)
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
