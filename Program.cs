@@ -10,17 +10,6 @@ namespace DataStructuresHomework
     class Program
     
 {
-        //WHAT'S UP HOMIES.
-
-            //trial #2 and trial #17
-
-        //MILKTOBERFEST 2017
-
-            //Vegas2017
-
-            //:)
-
-       //JULIAN WAS HERE
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
