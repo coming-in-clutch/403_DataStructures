@@ -19,6 +19,8 @@ namespace DataStructuresHomework
             //Vegas2017
 
             //:)
+
+       //JULIAN WAS HERE
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
