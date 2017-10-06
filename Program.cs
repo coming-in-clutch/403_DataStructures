@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace DataStructuresHomework
 {
     class Program
-    {
+    
+{
+        //WHAT'S UP HOMIES.
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
